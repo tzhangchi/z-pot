@@ -19,12 +19,14 @@ commander
 
 commander
     .command('report')
+    .option('-t','指定报告模板')
     .description('获取项目概要信息')
-    .action(function () {
+    .action(function (reportTemplate) {
         let processDirPath = process.env.PWD;
         execCommand('report', {
             reportDirPath: '' || processDirPath,
-            srcDirPath: '' || processDirPath
+            srcDirPath: '' || processDirPath,
+            reportTemplate: reportTemplate
         });
     })
 
@@ -36,6 +38,8 @@ commander.on('--help', function () {
     console.log('');
 
     console.log('    $ pot report ## 获取项目概要信息');
+    console.log('    $ pot report -t xxx ## 自定义模板，输出报告');
+
 
     console.log('');
 });

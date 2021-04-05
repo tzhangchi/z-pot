@@ -10,7 +10,7 @@ class Stat {
     constructor(rootPath, opts) {
         this.statInfo = {
             createdTime: moment(new Date()).format('YYYY-MM-DD'),
-            fileSize: 0,
+            fileSize: 0, //文件物理大小
             filesCount: 0, //文件数量统计
             dirsCount: 0, //目录数量统计
             fileLineCount: 0, //全部文件行数统计
@@ -23,7 +23,7 @@ class Stat {
         this.ingoreFiles = opts.ingoreFiles || []; //忽略的文件
         this.ignoreComments = opts.ignoreComments || false;
         this.reportDirPath = opts.reportDirPath;
-        this.reportTemplate = opts.reportTemplate || 'report.template.md';;
+        this.reportTemplate = opts.reportTemplate;;
 
     }
     getFileCount() {
@@ -120,8 +120,17 @@ class Stat {
     // 创建报告
     generateReport() {
         const reportTemplate = this.reportTemplate;
-        const reportType = reportTemplate.split('.')[reportTemplate.split('.').length - 1];
-        const templateFilePath = path.join(__dirname, 'templates', reportTemplate);
+        let reportType ;
+        let templateFilePath ;
+        if(!reportTemplate){
+            reportTemplate = 'report.template.md';
+            reportType = reportTemplate.split('.')[reportTemplate.split('.').length - 1];
+            templateFilePath = path.join(__dirname, 'templates', reportTemplate);
+        }else{
+            reportType = reportTemplate.split('.')[reportTemplate.split('.').length - 1];
+            templateFilePath = reportTemplate
+        }
+      
         const reportTemplateContent = fs.readFileSync(templateFilePath,'utf8');
        
         const reportContent = ZTemplate.process(reportTemplateContent, {

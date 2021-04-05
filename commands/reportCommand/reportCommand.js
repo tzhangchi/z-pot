@@ -9,7 +9,7 @@ module.exports = {
             ingoreFiles: [],
             ignoreComments: false, // 是否注释代码注释
             reportTemplate: reportTemplate,
-            reportDirPath:reportDirPath
+            reportDirPath: reportDirPath
         }).boot();
 
         falconStat.generateReport();
