@@ -13,6 +13,13 @@ project overview tool, used to analyze the amount of code, the number of files, 
 npm i -g z-pot
 ```
 
+## Features
+-[x] 文件统计
+-[x] 自定义模板
+-[] 文件类型分布
+-[] 代码函数按区间分布
+-[] 分析项目技术栈
+-[] 分析项目git参与者
 
 ```
 
@@ -56,12 +63,6 @@ ls pot_report_2021-04-05.html
 ```
 
 
-## Features
--[x] 文件统计
--[x] 自定义模板
--[] 文件类型分布
--[] 代码函数按区间分布
--[] 分析项目技术栈
--[] 分析项目git参与者
+
 
 
