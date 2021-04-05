@@ -1,5 +1,9 @@
 # pot 
 
+project overview tool, used to analyze the amount of code, the number of files, code statistics and so on.
+
+项目概述工具，用于分析代码量、文件数、代码统计等。
+
 
 ## 安装
 
