@@ -119,7 +119,7 @@ class Stat {
     }
     // 创建报告
     generateReport() {
-        const reportTemplate = this.reportTemplate;
+        let reportTemplate = this.reportTemplate;
         let reportType ;
         let templateFilePath ;
         if(!reportTemplate){
@@ -127,6 +127,7 @@ class Stat {
             reportType = reportTemplate.split('.')[reportTemplate.split('.').length - 1];
             templateFilePath = path.join(__dirname, 'templates', reportTemplate);
         }else{
+            console.log(reportTemplate)
             reportType = reportTemplate.split('.')[reportTemplate.split('.').length - 1];
             templateFilePath = reportTemplate
         }

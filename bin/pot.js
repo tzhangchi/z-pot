@@ -19,14 +19,14 @@ commander
 
 commander
     .command('report')
-    .option('-t','指定报告模板')
+    .option('-t,--template','指定报告模板')
     .description('获取项目概要信息')
-    .action(function (reportTemplate) {
+    .action(function (options) {
         let processDirPath = process.env.PWD;
         execCommand('report', {
             reportDirPath: '' || processDirPath,
             srcDirPath: '' || processDirPath,
-            reportTemplate: reportTemplate
+            reportTemplate: options.template
         });
     })
 
