@@ -1,7 +1,6 @@
 module.exports = {
     process(template, context) {
         try {
-            // var reg = /<%([^%>]+)?%>/g;
             var reg = /\$\{([^\}]+)?\}/g;
             var regOut = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g,
                 code = 'var r=[];\n',
@@ -27,7 +26,7 @@ module.exports = {
             if(e){
                 console.warn(e);
             }else{
-                return '报告生成失败'
+                return 'ZTemplate process fail'
             }
         }
     }

@@ -10,6 +10,7 @@ class Stat {
     constructor(rootPath, opts) {
         this.statInfo = {
             createdTime: moment(new Date()).format('YYYY-MM-DD'),
+            fileSize: 0,
             filesCount: 0, //文件数量统计
             dirsCount: 0, //目录数量统计
             fileLineCount: 0, //全部文件行数统计
@@ -51,6 +52,9 @@ class Stat {
                     console.log(e)
                 }
             }
+            var stats = fs.statSync(fullPath)
+            this.statInfo.fileSize += stats.size;
+
             let fineLine = fileContent.split('\n').length;
             if (fineLine > this.bigFileLimit) {
                 collectObj.bigFilesList.push(fullPath)
