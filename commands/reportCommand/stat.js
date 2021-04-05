@@ -1,22 +1,29 @@
 const fs = require('fs-extra');
 const path = require('path');
 const strip = require('decomment');
+const moment = require('moment');
+const ZTemplate = require('./../../libs/ZTemplate');
+const logger = require('./../../libs/logger');
+
 
 class Stat {
     constructor(rootPath, opts) {
-        this.countInfo = {
+        this.statInfo = {
+            createdTime: moment(new Date()).format('YYYY-MM-DD'),
             filesCount: 0, //文件数量统计
             dirsCount: 0, //目录数量统计
             fileLineCount: 0, //全部文件行数统计
             maxFileLine: 0, //单个文件最大的行数
-            classCount: 0, //类统计
             bigFilesList: [] //大文件列表
         }
         this.bigFileLimit = opts.bigFileLimit || 400; //大文件行数的定义
         this.rootPath = rootPath; //扫描的根目录
         this.ingoreDirs = opts.ingoreDirs || []; //忽略的目录
         this.ingoreFiles = opts.ingoreFiles || []; //忽略的文件
-        this.ignoreComments= opts.ignoreComments || false;
+        this.ignoreComments = opts.ignoreComments || false;
+        this.reportDirPath = opts.reportDirPath;
+        this.reportTemplate = opts.reportTemplate || 'report.template.md';;
+
     }
     getFileCount() {
 
@@ -24,7 +31,7 @@ class Stat {
     //从根目录递归收集文件和目录信息
     readFileList(dir, collectObj, {
         specifyFiles
-    }={}) {
+    } = {}) {
         let {
             filesList,
             dirsList,
@@ -37,10 +44,10 @@ class Stat {
             }
             //此时是文件
             let fileContent = fs.readFileSync(fullPath, 'utf-8');
-            if(this.ignoreComments){
+            if (this.ignoreComments) {
                 try {
                     fileContent = strip(fileContent);
-                }catch(e){
+                } catch (e) {
                     console.log(e)
                 }
             }
@@ -52,12 +59,11 @@ class Stat {
                 console.log(fullPath)
             }
             collectObj.fileLinesList.push(fineLine);
-            collectObj.classCount += this.getClassCountFromFileContent(fileContent);
 
             filesList.push(fullPath);
         }
         if (specifyFiles && specifyFiles.length) {
-            specifyFiles.forEach(item => statFile(item,item));
+            specifyFiles.forEach(item => statFile(item, item));
             return collectObj;
         }
 
@@ -72,22 +78,11 @@ class Stat {
                 dirsList.push(fullPath);
                 this.readFileList(path.join(dir, item), collectObj); //递归读取文件
             } else {
-                statFile(item,fullPath);
+                statFile(item, fullPath);
             }
         });
         return collectObj;
 
-    }
-    //获取文件的类个数，此处用 AST 替代 正则更准确
-    getClassCountFromFileContent(fileContent) {
-        let lines = fileContent.split('\n');
-        let count = 0;
-        for (var line of lines) {
-            if (/class\s((.)*)/.exec(line)) {
-                count++;
-            }
-        }
-        return count;
     }
     //启动
     boot() {
@@ -95,7 +90,6 @@ class Stat {
             filesList: [],
             dirsList: [],
             fileLinesList: [],
-            classCount: 0,
             bigFilesList: []
 
         }
@@ -107,32 +101,34 @@ class Stat {
             this.readFileList(this.rootPath, collectObj);
         }
 
-        this.countInfo.filesCount = collectObj.filesList.length;
-        this.countInfo.dirsCount = collectObj.dirsList.length;
-        this.countInfo.maxFileLine = collectObj.fileLinesList.sort(function (a, b) {
+        this.statInfo.filesCount = collectObj.filesList.length;
+        this.statInfo.dirsCount = collectObj.dirsList.length;
+        this.statInfo.maxFileLine = collectObj.fileLinesList.sort(function (a, b) {
             return b - a;
         })[0];
         // console.log( collectObj.fileLinesList)
-        this.countInfo.fileLineCount = collectObj.fileLinesList.reduce(function (prev, cur) {
+        this.statInfo.fileLineCount = collectObj.fileLinesList.reduce(function (prev, cur) {
             return prev + cur;
         }, 0)
-        this.countInfo.classCount = collectObj.classCount;
-        this.countInfo.bigFilesList = collectObj.bigFilesList;
+        this.statInfo.bigFilesList = collectObj.bigFilesList;
         return this;
     }
-    // 打印统计信息
-    logStatDesc(desc) {
-        let logs = []
-        desc ? logs.push(desc) : null;
-        logs.push(`统计时间: ${new Date().toLocaleDateString().replace('/','-')}`);
-        logs.push(`文件数量统计: ${this.countInfo.filesCount} 个`);
-        logs.push(`目录数量统计: ${this.countInfo.dirsCount} 个`);
-        logs.push(`代码总行数统计: ${this.countInfo.fileLineCount} 行`);
-        logs.push(`单个文件最大行统计: ${this.countInfo.maxFileLine} 行`);
+    // 创建报告
+    generateReport() {
+        const reportTemplate = this.reportTemplate;
+        const reportType = reportTemplate.split('.')[reportTemplate.split('.').length - 1];
+        const templateFilePath = path.join(__dirname, 'templates', reportTemplate);
+        const reportTemplateContent = fs.readFileSync(templateFilePath,'utf8');
+       
+        const reportContent = ZTemplate.process(reportTemplateContent, {
+            statInfo: this.statInfo
+        });
 
-        // console.log(`JavaScript Class统计: ${this.countInfo.classCount} 个`);
-        console.log(logs.join('\n'));
-        this.statLogs = logs;
+        logger.info(`\n${reportContent}`)
+        let filePath = path.join(this.reportDirPath, `pot_report_${this.statInfo.createdTime}.${reportType}`);
+        fs.ensureFileSync(filePath);
+        fs.writeFileSync(filePath, reportContent, 'utf8');
+
         return this;
     }
     //打印工程建议
@@ -142,25 +138,20 @@ class Stat {
         logs.push('------- 工程建议 --------');
 
         logs.push(`这些文件超过 ${this.bigFileLimit} 行`);
-        for (let file of this.countInfo.bigFilesList) {
+        for (let file of this.statInfo.bigFilesList) {
             logs.push(file)
         }
         console.warn(logs.join('\n'));
     }
-    // 统计日志写入文件
-    writeStatRecords(key, dirName) {
-        let filePath = path.join(dirName, key + '.txt');
-        fs.ensureFileSync(filePath);
-        fs.writeFileSync(filePath, this.statLogs.join('\n'), 'utf8');
-    }
+
     //合并多个统计实例
     mergeStat(statInstance) {
-        for (let key in this.countInfo) {
-            if (Object.prototype.toString.call(this.countInfo[key]) === '[object Number]') {
-                this.countInfo[key] += statInstance.countInfo[key];
+        for (let key in this.statInfo) {
+            if (Object.prototype.toString.call(this.statInfo[key]) === '[object Number]') {
+                this.statInfo[key] += statInstance.statInfo[key];
             }
-            if (Object.prototype.toString.call(this.countInfo[key]) === '[object Array]') {
-                this.countInfo[key].push(statInstance.countInfo[key]);
+            if (Object.prototype.toString.call(this.statInfo[key]) === '[object Array]') {
+                this.statInfo[key].push(statInstance.statInfo[key]);
             }
         }
         return this;

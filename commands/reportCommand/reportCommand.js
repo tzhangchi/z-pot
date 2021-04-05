@@ -1,16 +1,18 @@
-const Stat = require('./stat');
-
+const Stat = require('./Stat');
+const path = require('path');
+const logger = require('./../../libs/logger');
 module.exports = {
-    exec({ reportDirPath, srcDirPath }) {
-        console.log('进行 report 统计')
-        const path = require('path');
+    exec({ reportDirPath, srcDirPath, reportTemplate }) {
+        logger.info(`reportCommand exec reportDirPath:${reportDirPath} srcDirPath:${srcDirPath}`)
         const falconStat = new Stat(srcDirPath, {
             ingoreDirs: [],
             ingoreFiles: [],
-            ignoreComments: false // 是否注释代码注释
+            ignoreComments: false, // 是否注释代码注释
+            reportTemplate: reportTemplate,
+            reportDirPath:reportDirPath
         }).boot();
 
-        falconStat.logStatDesc('').writeStatRecords('pot_report_2021-04-02', reportDirPath);
+        falconStat.generateReport();
 
     }
 }
