@@ -23,7 +23,7 @@ commander
     .option('-t, --template <templatePath>','指定报告模板')
     .description('获取项目概要信息')
     .action(function (options) {
-        let processDirPath = process.env.PWD;
+        let processDirPath = process.cwd();
         execCommand('report', {
             reportDirPath: '' || processDirPath,
             srcDirPath: '' || processDirPath,
