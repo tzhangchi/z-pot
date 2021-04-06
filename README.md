@@ -13,6 +13,7 @@ project overview tool, used to analyze the amount of code, the number of files, 
 npm i -g z-pot
 
 cd ${yourProject}
+
 pot report
 ```
 
