@@ -2,7 +2,7 @@ const Stat = require("./Stat");
 const path = require("path");
 const logger = require("./../../libs/logger");
 const defaultIngoreDirs = [".git", "node_modules"];
-const defaultIngoreFileds = ["package-lock.json"];
+const defaultIngoreFileds = ["package-lock.json","yarn.lock"];
 
 module.exports = {
   exec({ reportDirPath, srcDirPath, reportTemplate }) {
