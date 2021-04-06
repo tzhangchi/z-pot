@@ -88,7 +88,11 @@ pot report -t ./tests/report.template.html ## 指定模板
 ls pot_report_2021-04-05.html ## 产物
 ```
 
+# License
 
+[MIT](https://opensource.org/licenses/MIT)
+
+Copyright (c) 2013-present, zhangchi
 
 
 
