@@ -7,6 +7,7 @@ let {
 } = require('child_process');
 const inquirer = require('inquirer');
 const { opts, option } = require('commander');
+const logger = require('../libs/logger');
 
 
 let execCommand = (commandName, options) => {
@@ -24,6 +25,7 @@ commander
     .description('获取项目概要信息')
     .action(function (options) {
         let processDirPath = process.cwd();
+        logger.info(`workspace: ${processDirPath}`)
         execCommand('report', {
             reportDirPath: '' || processDirPath,
             srcDirPath: '' || processDirPath,
