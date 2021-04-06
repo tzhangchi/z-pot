@@ -28,6 +28,7 @@ pot report
 ```
 
 ## 使用
+
 ```shell
 Usage: pot <command> [options]
 
