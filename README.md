@@ -11,6 +11,8 @@ project overview tool, used to analyze the amount of code, the number of files, 
 
 ```shell
 npm i -g z-pot
+
+pot report
 ```
 
 ## Features
@@ -56,8 +58,24 @@ Commands:
         bigFilesList: [] //大文件列表
     }
 ```
+自定义模板内容 report.template.html
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    ${this.statInfo.createdTime}
+</body>
+</html>
 ```
+
+```shell
 pot report -t ./tests/report.template.html
 ls pot_report_2021-04-05.html
 ```

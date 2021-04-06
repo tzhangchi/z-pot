@@ -73,16 +73,22 @@ class Stat {
 
         let files = fs.readdirSync(dir);
         files.forEach((item, index) => {
-            var fullPath = path.join(dir, item);
-            const stat = fs.statSync(fullPath);
-            if (stat.isDirectory()) {
-                if (this.ingoreDirs.includes(item)) {
-                    return;
+            try {
+                var fullPath = path.join(dir, item);
+                const stat = fs.statSync(fullPath);
+                if (stat.isDirectory()) {
+                    if (this.ingoreDirs.includes(item)) {
+                        return;
+                    }
+                    dirsList.push(fullPath);
+                    this.readFileList(path.join(dir, item), collectObj); //递归读取文件
+                } else {
+                    statFile(item, fullPath);
                 }
-                dirsList.push(fullPath);
-                this.readFileList(path.join(dir, item), collectObj); //递归读取文件
-            } else {
-                statFile(item, fullPath);
+            }catch(e){
+                if(e){
+                    
+                }
             }
         });
         return collectObj;

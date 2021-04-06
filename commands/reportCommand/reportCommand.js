@@ -1,7 +1,7 @@
 const Stat = require('./Stat');
 const path = require('path');
 const logger = require('./../../libs/logger');
-const defaultIngoreDirs  = ['.git'];
+const defaultIngoreDirs  = ['.git','node_modules'];
 
 module.exports = {
     exec({ reportDirPath, srcDirPath, reportTemplate }) {
