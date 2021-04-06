@@ -6,7 +6,7 @@
   "repository": "",
   "scripts": {
     "test": "node ./tests/ZTemplate.test.js",
-    "pub": "sh ./shell/pub-npm.sh"
+    "pub": "sh ./tools/pub-npm.sh"
   },
   "bin": {
     "pot": "bin/pot.js"
