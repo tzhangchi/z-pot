@@ -1,0 +1,1 @@
+Line Count: ${this.statInfo.fileLineCount}

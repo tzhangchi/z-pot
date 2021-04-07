@@ -4,15 +4,15 @@ const reportCommand = require('./reportCommand/reportCommand');
 
 module.exports = {
     execCommand(commandName, options){
+        let execResult;
         switch (commandName){
             case 'report':
-                reportCommand.exec(options); 
+                execResult = reportCommand.exec(options); 
                 break;
             case 'default':
-                defaultCommand.exec(options); 
+                execResult = defaultCommand.exec(options); 
                 break;
-            
-            
         }
+        return execResult;
     }
 }

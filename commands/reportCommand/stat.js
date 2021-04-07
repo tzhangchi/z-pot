@@ -149,7 +149,7 @@ class Stat {
         fs.ensureFileSync(filePath);
         fs.writeFileSync(filePath, reportContent, 'utf8');
 
-        return this;
+        return reportContent;
     }
     //打印工程建议
     logSuggestion() {

@@ -16,6 +16,6 @@ module.exports = {
       reportDirPath: reportDirPath,
     }).boot();
 
-    statInstance.generateReport();
-  },
+    return statInstance.generateReport();
+  }
 };
