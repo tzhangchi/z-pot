@@ -5,13 +5,10 @@
   "main": "index.js",
   "repository": "",
   "scripts": {
-    "test": "node ./tests/ZTemplate.test.js",
+    "test": "jest --coverage",
     "pub": "sh ./tools/pub-npm.sh"
   },
   "jest": {
-    "transform": {
-      ".(ts|tsx)": "ts-jest"
-    },
     "testEnvironment": "node",
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "moduleFileExtensions": [
@@ -32,7 +29,7 @@
       }
     },
     "collectCoverageFrom": [
-      "src/*.{js,ts}"
+      "bin/*.{js,ts}","commands/*.{js,ts}","libs/*.{js,ts}"
     ]
   },
   "bin": {

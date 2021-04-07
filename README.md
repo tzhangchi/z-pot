@@ -1,6 +1,17 @@
 # pot 
 
-project overview tool, used to analyze the amount of code, the number of files, code statistics and so on.
+<p align="center">
+  <a href="https://npmjs.com/package/z-pot" title="Version">
+    <img src="https://img.shields.io/npm/v/z-pot.svg" alt="Version">
+  </a>
+  <a href="https://npmjs.com/package/z-pot" title="Downloads">
+    <img src="https://img.shields.io/npm/dm/z-pot.svg" alt="Downloads">
+  </a>
+</p>
+
+
+
+z-pot is a project overview tool, used to analyze the amount of code, the number of files, code statistics and so on.
 
 项目概述工具，用于分析代码量、文件数、代码统计等。
 

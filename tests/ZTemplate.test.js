@@ -1,6 +1,9 @@
-const ZTemplate = require('./../libs/ZTemplate');
-const assert = require('assert');
+const zTemplate = require("./../libs/ZTemplate");
 
-const expected = ZTemplate.process("${this.txt}", { txt: 'hello word' });
-
-assert.equal(expected, 'hello word', 'ZTemplate Process Succeed')
+describe("zTemplate test", () => {
+  it("zTemplate process", () => {
+    expect(
+        zTemplate.process('hello ${this.name}', { name: 'zhangchi' })
+    ).toEqual('hello zhangchi')
+  });
+});
