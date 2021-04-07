@@ -1,11 +1,11 @@
 {
   "name": "z-pot",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "",
   "main": "index.js",
-  "repository" : { 
-    "type" : "git",
-    "url" : "https://github.com/fancylife/z-pot.git" 
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fancylife/z-pot.git"
   },
   "scripts": {
     "test": "jest --coverage",
@@ -32,7 +32,9 @@
       }
     },
     "collectCoverageFrom": [
-      "bin/*.{js,ts}","commands/*.{js,ts}","libs/*.{js,ts}"
+      "bin/*.{js,ts}",
+      "commands/*.{js,ts}",
+      "libs/*.{js,ts}"
     ]
   },
   "bin": {
