@@ -1,61 +1,63 @@
 {
-  "name": "z-pot",
-  "version": "0.0.18",
-  "description": "",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fancylife/z-pot.git"
-  },
-  "scripts": {
-    "test": "jest --coverage",
-    "pub": "sh ./tools/pub-npm.sh"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/test/"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 90,
-        "functions": 95,
-        "lines": 95,
-        "statements": 95
-      }
+    "name": "z-pot",
+    "version": "0.0.17",
+    "description": "",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/fancylife/z-pot.git"
     },
-    "collectCoverageFrom": [
-      "bin/*.{js,ts}",
-      "commands/*.{js,ts}",
-      "libs/*.{js,ts}"
-    ]
-  },
-  "bin": {
-    "pot": "bin/pot.js"
-  },
-  "keywords": [
-    "project",
-    "overview",
-    "statics"
-  ],
-  "author": "zhangchi",
-  "license": "MIT",
-  "dependencies": {
-    "chalk": "^2.4.1",
-    "commander": "^2.16.0",
-    "decomment": "^0.9.4",
-    "fs-extra": "^6.0.1",
-    "inquirer": "^6.2.0",
-    "moment": "^2.21.0",
-    "jest": "^23.6.0",
-    "jest-config": "^23.6.0"
-  },
-  "devDependencies": {}
+    "scripts": {
+        "test": "jest --coverage",
+        "pub": "sh ./tools/pub-npm.sh"
+    },
+    "jest": {
+        "verbose": true,
+        "bail":false,
+        "testEnvironment": "node",
+        "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js"
+        ],
+        "coveragePathIgnorePatterns": [
+            "/node_modules/",
+            "/test/"
+        ],
+        "coverageThreshold": {
+            "global": {
+                "branches": 90,
+                "functions": 95,
+                "lines": 95,
+                "statements": 95
+            }
+        },
+        "collectCoverageFrom": [
+            "commands/*.{js,ts}",
+            "libs/*.{js,ts}",
+            "!libs/pot.js"
+        ]
+    },
+    "bin": {
+        "pot": "bin/pot.js"
+    },
+    "keywords": [
+        "project",
+        "overview",
+        "statics"
+    ],
+    "author": "zhangchi",
+    "license": "MIT",
+    "dependencies": {
+        "chalk": "^2.4.1",
+        "commander": "^2.16.0",
+        "decomment": "^0.9.4",
+        "fs-extra": "^6.0.1",
+        "inquirer": "^6.2.0",
+        "jest": "^23.6.0",
+        "jest-config": "^23.6.0",
+        "moment": "^2.21.0"
+    },
+    "devDependencies": {}
 }

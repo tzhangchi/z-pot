@@ -133,7 +133,6 @@ class Stat {
             reportType = reportTemplate.split('.')[reportTemplate.split('.').length - 1];
             templateFilePath = path.join(__dirname, 'templates', reportTemplate);
         }else{
-            console.log(reportTemplate)
             reportType = reportTemplate.split('.')[reportTemplate.split('.').length - 1];
             templateFilePath = reportTemplate
         }
