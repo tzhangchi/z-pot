@@ -5,13 +5,16 @@ project overview tool, used to analyze the amount of code, the number of files, 
 项目概述工具，用于分析代码量、文件数、代码统计等。
 
 
-## 安装
+## 快速开始
 
 安装 `z-pot`
 
 ```shell
 npm i -g z-pot
+```
 
+创建报告
+``` shell
 cd ${yourProject}
 
 pot report
@@ -26,9 +29,10 @@ pot report
 - [] 分析项目技术栈
 - [] 分析项目git参与者
 
-```
 
-## 使用
+
+## 使用指南
+
 ```shell
 Usage: pot <command> [options]
 
@@ -47,9 +51,10 @@ Commands:
     $ pot report -t xxx ## 自定义模板，输出报告
 ```
 
-## 自定义模板
+### 自定义模板
 
 模板上下文 Context
+
 ```
   this.statInfo = {
         createdTime: moment(new Date()).format('YYYY-MM-DD'),
@@ -61,7 +66,7 @@ Commands:
         bigFilesList: [] //大文件列表
     }
 ```
-自定义模板内容 report.template.html
+自定义模板内容 `report.template.html`
 
 ```html
 <!DOCTYPE html>
@@ -79,11 +84,16 @@ Commands:
 ```
 
 ```shell
-pot report -t ./tests/report.template.html
-ls pot_report_2021-04-05.html
+pot report -t ./tests/report.template.html ## 指定模板
+
+ls pot_report_2021-04-05.html ## 产物
 ```
 
+# License
 
+[MIT](https://opensource.org/licenses/MIT)
+
+Copyright (c) 2013-present, zhangchi
 
 
 
