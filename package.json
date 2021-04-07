@@ -3,7 +3,10 @@
   "version": "0.0.17",
   "description": "",
   "main": "index.js",
-  "repository": "",
+  "repository" : { 
+    "type" : "git",
+    "url" : "https://github.com/fancylife/z-pot.git" 
+  },
   "scripts": {
     "test": "jest --coverage",
     "pub": "sh ./tools/pub-npm.sh"
