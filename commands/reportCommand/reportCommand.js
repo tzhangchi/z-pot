@@ -1,4 +1,4 @@
-const Stat = require("./Stat");
+const Stat = require("./stat");
 const path = require("path");
 const logger = require("./../../libs/logger");
 const defaultIngoreDirs = [".git", "node_modules"];

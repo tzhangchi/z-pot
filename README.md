@@ -7,7 +7,9 @@
   <a href="https://npmjs.com/package/z-pot" title="Downloads">
     <img src="https://img.shields.io/npm/dm/z-pot.svg" alt="Downloads">
   </a>
-    
+  <a>
+  <img src="https://travis-ci.com/fancylife/z-pot.svg?branch=master" />
+  </a>  
 </p>
 
 
