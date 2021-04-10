@@ -34,7 +34,7 @@ cd ${yourProject}
 
 pot report
 ```
-
+![pot-report](./assets/pot-report.png)
 ## Features
 - [x] 文件统计
 - [x] 自定义模板
