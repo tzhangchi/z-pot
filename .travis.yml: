@@ -7,3 +7,6 @@ before_install:
   - npm install -g jest
 script:
   - jest --ci --coverage && codecov
+cache:
+  directories:
+    - node_modules
