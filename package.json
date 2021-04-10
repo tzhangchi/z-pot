@@ -9,7 +9,8 @@
     },
     "scripts": {
         "test": "jest --coverage",
-        "pub": "sh ./tools/pub-npm.sh"
+        "pub": "sh ./tools/pub-npm.sh",
+        "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls"
     },
     "jest": {
         "verbose": true,
@@ -59,5 +60,7 @@
         "jest-config": "^23.6.0",
         "moment": "^2.21.0"
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "coveralls": "^3.1.0"
+    }
 }

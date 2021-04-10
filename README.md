@@ -10,6 +10,8 @@
   <a>
   <img src="https://travis-ci.com/fancylife/z-pot.svg?branch=master" />
   </a>  
+  <a a href='https://coveralls.io/github/fancylife/z-pot?branch=master'><img src='https://coveralls.io/repos/github/fancylife/z-pot/badge.svg?branch=master' alt='Coverage Status' /></a>
+
 </p>
 
 

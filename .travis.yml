@@ -6,7 +6,7 @@ before_install:
   - npm install -g codecov
   - npm install -g jest
 script:
-  - jest --ci --coverage && codecov
+  - npm run coveralls
 cache:
   directories:
     - node_modules
