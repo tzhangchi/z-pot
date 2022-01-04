@@ -1,4 +1,4 @@
-# pot 
+# pot
 
 <p align="center">
   <a href="https://npmjs.com/package/z-pot" title="Version">
@@ -14,38 +14,35 @@
 
 </p>
 
-
-
 z-pot is a project overview tool, used to analyze the amount of code, the number of files, code statistics and so on.
-
-项目概述工具，用于分析代码量、文件数、代码统计等。
-
 
 ## 快速开始
 
-安装 `z-pot`
+install `z-pot`
 
 ```shell
 npm i -g z-pot
 ```
 
-创建报告
-``` shell
+create report
+
+```shell
 cd ${yourProject}
 
 pot report
 ```
+
 ![pot-report](./assets/pot-report.png)
+
 ## Features
-- [x] 文件统计
-- [x] 自定义模板
-- [x] 单元测试
-- [] 文件类型分布
-- [] 代码行数按区间分布
-- [] 分析项目技术栈
-- [] 分析项目git参与者
 
-
+-   [x] file stats
+-   [x] custom
+-   [x] unit test
+-   [] stat group by file type
+-   [] stat group by file line count
+-   [] stat tech stack of project
+-   [] stat of project contributor
 
 ## 使用指南
 
@@ -69,33 +66,34 @@ Commands:
 
 ### 自定义模板
 
-模板上下文 Context
+Template Context
 
 ```
   this.statInfo = {
         createdTime: moment(new Date()).format('YYYY-MM-DD'),
-        fileSize: 0, //文件物理大小
-        filesCount: 0, //文件数量统计
-        dirsCount: 0, //目录数量统计
-        fileLineCount: 0, //全部文件行数统计
-        maxFileLine: 0, //单个文件最大的行数
-        bigFilesList: [] //大文件列表
+        fileSize: 0, // project file size
+        filesCount: 0, //files count
+        dirsCount: 0, //dir count
+        fileLineCount: 0, //the count of all files
+        maxFileLine: 0, // single file max line count
+        bigFilesList: [] //big files list
     }
 ```
-自定义模板内容 `report.template.html`
+
+Custom Template `report.template.html`
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    ${this.statInfo.createdTime}
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        ${this.statInfo.createdTime}
+    </body>
 </html>
 ```
 
@@ -110,6 +108,3 @@ ls pot_report_2021-04-05.html ## 产物
 [MIT](https://opensource.org/licenses/MIT)
 
 Copyright (c) 2013-present, zhangchi
-
-
-
