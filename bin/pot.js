@@ -14,9 +14,9 @@ commander
 
 commander
     .command("report")
-    .option("-t, --template <templatePath>", "指定报告模板")
-    .option("-s, --src <srcPath>", "指定报告模板")
-    .description("获取项目概要信息")
+    .option("-t, --template <templatePath>", "specify report template")
+    .option("-s, --src <srcPath>", "specify project src path")
+    .description("print project info")
     .action(function (options) {
         let processDirPath = process.cwd();
         logger.info(`workspace: ${processDirPath}`);
@@ -31,8 +31,8 @@ commander.on("--help", function () {
     console.log("");
     console.log("  Examples:");
     console.log("");
-    console.log("    $ pot report ## 获取项目概要信息");
-    console.log("    $ pot report -t xxx ## 自定义模板，输出报告");
+    console.log("    $ pot report ## build report");
+    console.log("    $ pot report -t xxx ## custom report template");
     console.log("");
 });
 

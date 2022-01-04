@@ -56,12 +56,13 @@ Options:
   -h, --help        output usage information
 
 Commands:
-  report [options]  获取项目概要信息
+  report [options]  print project info
 
   Examples:
 
-    $ pot report ## 获取项目概要信息
-    $ pot report -t xxx ## 自定义模板，输出报告
+    $ pot report ## build report
+    $ pot report -t xxx ## custom report template
+
 ```
 
 ### 自定义模板
