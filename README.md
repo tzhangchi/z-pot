@@ -16,7 +16,7 @@
 
 z-pot is a project overview tool, used to analyze the amount of code, the number of files, code statistics and so on.
 
-## 快速开始
+## Quick Start
 
 install `z-pot`
 
@@ -44,7 +44,7 @@ pot report
 -   [] stat tech stack of project
 -   [] stat of project contributor
 
-## 使用指南
+## Help
 
 ```shell
 Usage: pot <command> [options]
@@ -65,7 +65,7 @@ Commands:
 
 ```
 
-### 自定义模板
+### Custom Template
 
 Template Context
 
@@ -99,9 +99,9 @@ Custom Template `report.template.html`
 ```
 
 ```shell
-pot report -t ./tests/report.template.html ## 指定模板
+pot report -t ./tests/report.template.html ## custom template
 
-ls pot_report_2021-04-05.html ## 产物
+ls pot_report_2021-04-05.html ## report
 ```
 
 # License

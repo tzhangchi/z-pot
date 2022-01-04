@@ -37,6 +37,6 @@ describe("bin test", () => {
         //pot report --src ./tests/demo/src
         let result = await cli(["report", "--src", "./tests/demo/src"], ".");
         expect(result.code).toBe(0);
-        expect(result.stdout).toContain('单个文件最大行统计: 4 行');
+        expect(result.stdout).toContain('Single file max line count: 4 lines');
     });
 });
